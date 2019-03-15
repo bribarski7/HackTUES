@@ -3,6 +3,7 @@
 #include <GL/gl.h>
 #include <math.h>
 
+
 void krasota(float a,float b,float r){
     glBegin(GL_TRIANGLES);
     for(float i=0;i<=6.28;i+=0.1){
@@ -58,6 +59,7 @@ int main(int argc, char* argv[]) {
         printf("Could not create window: %s\n", SDL_GetError());
         return 1;
     }
+
     float a=0.2;
     float b=0.2;
     float w=0.3;
