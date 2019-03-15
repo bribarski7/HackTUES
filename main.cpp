@@ -57,16 +57,28 @@ int main(int argc, char* argv[]) {
     }
     float a=0.2;
     float b=0.2;
-    float w=0.2;
-    float h=0.3;
-    bool left = false;
-    bool right = false;
-    bool up = false;
-    bool down = false;
+    float w=0.3;
+    float h=0.2;
+
     float x = 0;
     float y = 0;
     float r = 0.15;
     float sp = 0.000175;
+
+    float x1 = 0;
+    float y1 = 0;
+    float sp1 = 0.0001;
+
+    bool left = false;
+    bool right = false;
+    bool up = false;
+    bool down = false;
+
+    bool left1 = false;
+    bool right1 = false;
+    bool up1 = false;
+    bool down1 = false;
+
     while (1)
     {
         SDL_Event event;
@@ -74,37 +86,55 @@ int main(int argc, char* argv[]) {
         {
             if(event.type == SDL_QUIT)
                 return 1;
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd')
-            {
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd'){
                 right = true;
             }
-            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'd')
-            {
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'd'){
                 right = false;
             }
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'a')
-            {
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'a'){
                 left = true;
             }
-            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'a')
-            {
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'a'){
                 left = false;
             }
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'w')
-            {
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'w'){
                 up = true;
             }
-            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'w')
-            {
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'w'){
                 up = false;
             }
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 's')
-            {
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 's'){
                 down = true;
             }
-            if (event.type == SDL_KEYUP && event.key.keysym.sym == 's')
-            {
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 's'){
                 down = false;
+            }
+
+
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'l'){
+                right1 = true;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'l'){
+                right1 = false;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'j'){
+                left1 = true;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'j'){
+                left1 = false;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'i'){
+                up1 = true;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'i'){
+                up1 = false;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'k'){
+                down1 = true;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'k'){
+                down1 = false;
             }
         }
 
@@ -132,9 +162,34 @@ int main(int argc, char* argv[]) {
                 y = -1 + r;
             }
         }
+
+        if (left1 == true){
+            x1 -= sp;
+            if (x1 < -1 + 0.2){
+                x1 = -1 + 0.2;
+            }
+        }
+        if (right1 == true){
+            x1 += sp;
+            if (x1 > 1 - 0.2){
+                x1 = 1 - 0.2;
+            }
+        }
+        if (up1 == true){
+            y1 += sp;
+            if (y1 > 1 - 0.2){
+                y1 = 1 - 0.2;
+            }
+        }
+        if (down1 == true){
+            y1 -= sp;
+            if (y1 < -1 + 0.2){
+                y1 = -1 + 0.2;
+            }
+        }
         glClear(GL_COLOR_BUFFER_BIT);
-        rectangle(x, y, w, h);
-        //circle(x,y,r);
+        rectangle(x1, y1, w, h);
+        circle(x,y,r);
         SDL_GL_SwapWindow(window);
     }
     SDL_Quit();
