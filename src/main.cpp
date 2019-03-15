@@ -3,6 +3,7 @@
 #include <GL/gl.h>
 #include <math.h>
 
+
 void krasota(float a,float b,float r){
     glBegin(GL_TRIANGLES);
     for(float i=0;i<=6.28;i+=0.1){
@@ -14,6 +15,9 @@ void krasota(float a,float b,float r){
     }
 }
 
+float window_w=1366;
+float window_h=768;
+
 void circle(float x,float y,float r){
     int n=32;
     float step=M_PI/(n/2);
@@ -22,8 +26,8 @@ void circle(float x,float y,float r){
         float a=step*i;
         float a2=step*(i+1);
         glBegin(GL_TRIANGLES);
-        glVertex2f(x+cos(a)*r,y+sin(a)*r);
-        glVertex2f(x+cos(a2)*r,y+sin(a2)*r);
+        glVertex2f(x+cos(a)*r,y+sin(a)*r*(window_w/window_h));
+        glVertex2f(x+cos(a2)*r,y+sin(a2)*r*(window_w/window_h));
         glVertex2f(x,y);
         glEnd();
     }
@@ -33,18 +37,17 @@ void rectangle(float x,float y,float w,float h){
     w /= 2;
     h /= 2;
     glBegin(GL_TRIANGLE_STRIP);
-    glVertex2f(x - w, y - h);
-    glVertex2f(x - w, y + h);
-    glVertex2f(x + w, y - h);
-    glVertex2f(x + w, y + h);
+    glVertex2f(x - w, (y - h)*(window_w/window_h));
+    glVertex2f(x - w, (y + h)*(window_w/window_h));
+    glVertex2f(x + w, (y - h)*(window_w/window_h));
+    glVertex2f(x + w, (y + h)*(window_w/window_h));
     glEnd();
 }
-
 
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
-        "SDL2/OpenGL Demo", 100, 100, 550, 550,
+        "SDL2/OpenGL Demo", 0, 30, window_w, window_h,
         SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
         SDL_GL_CreateContext(window);
     glClearColor(0,0,1,1);
@@ -54,17 +57,16 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    float w=0.15;
+    float w=0.1;
     float h=0.1;
 
     float x = 0;
     float y = 0;
     float r = 0.05;
-    float sp = 0.000175;
+    float sp = 0.0002;
 
     float x1 = 0;
     float y1 = 0;
-    float sp1 = 0.0001;
 
     bool left = false;
     bool right = false;
@@ -162,26 +164,26 @@ int main(int argc, char* argv[]) {
 
         if (left1 == true){
             x1 -= sp;
-            if (x1 < -1.14 + 0.2){
-                x1 = -1.14 + 0.2;
+            if (x1 < -1.15 + 0.2){
+                x1 = -1.15 + 0.2;
             }
         }
         if (right1 == true){
             x1 += sp;
-            if (x1 > 1.14 - 0.2){
-                x1 = 1.14 - 0.2;
+            if (x1 > 1.15 - 0.2){
+                x1 = 1.15 - 0.2;
             }
         }
         if (up1 == true){
             y1 += sp;
-            if (y1 > 1.15 - 0.2){
-                y1 = 1.15 - 0.2;
+            if (y1 > 1 - 0.2){
+                y1 = 1 - 0.2;
             }
         }
         if (down1 == true){
             y1 -= sp;
-            if (y1 < -1.15 + 0.2){
-                y1 = -1.15 + 0.2;
+            if (y1 < -0.645 + 0.2){
+                y1 = -0.645 + 0.2;
             }
         }
         glClear(GL_COLOR_BUFFER_BIT);
