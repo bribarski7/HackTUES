@@ -48,37 +48,89 @@ int main(int argc, char* argv[]) {
         SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
         SDL_GL_CreateContext(window);
     glClearColor(0,0,1,1);
-    if (window == NULL) {
+    if (window == NULL)
+    {
         printf("Could not create window: %s\n", SDL_GetError());
         return 1;
     }
-    float x=0;
-    float y=0;
     float a=0.2;
     float b=0.2;
     float w=0.2;
     float h=0.3;
-    while (1) {
+    bool left = false;
+    bool right = false;
+    bool up = false;
+    bool down = false;
+    float x = 0;
+    float y = 0;
+    float r = 0.15;
+    float sp = 0.000175;
+    while (1)
+    {
         SDL_Event event;
-        while (SDL_PollEvent(&event)) {
-                if(event.type == SDL_QUIT)
-                    return 1;
-                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd'){
-                    x+=0.01;
-                }
-                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'a'){
-                    x-=0.01;
-                }
-                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'w'){
-                    y+=0.01;
-                }
-                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 's'){
-                    y-=0.01;
-                }
+        while (SDL_PollEvent(&event))
+        {
+            if(event.type == SDL_QUIT)
+                return 1;
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd')
+            {
+                right = true;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'd')
+            {
+                right = false;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'a')
+            {
+                left = true;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'a')
+            {
+                left = false;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'w')
+            {
+                up = true;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'w')
+            {
+                up = false;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 's')
+            {
+                down = true;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 's')
+            {
+                down = false;
+            }
+        }
+
+        if (left){
+            x -= sp;
+            if (x < -1 + r){
+                x = -1 + r;
+            }
+        }
+        if (right){
+            x += sp;
+            if (x > 1 - r){
+                x = 1 - r;
+            }
+        }
+        if (up == true){
+            y += sp;
+            if (y > 1 - r){
+                y = 1 - r;
+            }
+        }
+        if (down == true){
+            y -= sp;
+            if (y < -1 + r){
+                y = -1 + r;
+            }
         }
         glClear(GL_COLOR_BUFFER_BIT);
-
-        float r=0.2;
         rectangle(x, y, w, h);
         //circle(x,y,r);
         SDL_GL_SwapWindow(window);
