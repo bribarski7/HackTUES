@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <SDL_image.h>
 #include <stdio.h>
 #include <GL/gl.h>
 #include <math.h>
@@ -44,35 +45,48 @@ void rectangle(float x,float y,float w,float h){
     glEnd();
 }
 
+<<<<<<< HEAD
+=======
+
+void load_image(const char *filepath){
+    SDL_Surface *image = IMG_Load (filepath);
+    GLuint texture_id;
+    glGenTextures(1,&texture_id);
+    glBindTexture(GL_TEXTURE_2D, texture_id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->w, image->h,0,GL_RGBA,GL_UNSIGNED_BYTE,image->pixels);
+    SDL_FreeSurface(image);
+}
 
 
-
+>>>>>>> 565183e67b27e519ce3af09b14e7620617adce30
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
         "SDL2/OpenGL Demo", 0, 30, window_w, window_h,
-        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
-        SDL_GL_CreateContext(window);
-    glClearColor(0,0,1,1);
+        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE|SDL_WINDOW_FULLSCREEN);
+
     if (window == NULL)
     {
         printf("Could not create window: %s\n", SDL_GetError());
         return 1;
     }
+    SDL_GL_CreateContext(window);
 
-    float a=0.2;
-    float b=0.2;
-    float w=0.3;
-    float h=0.2;
+    glClearColor(0,0,1,1);
+    load_image("res/ASCIIforHACKTUES.png");
+
+    float w=0.1;
+    float h=0.1;
 
     float x = 0;
     float y = 0;
-    float r = 0.15;
-    float sp = 0.00175;
+    float r = 0.05;
+    float sp = 0.0002;
 
     float x1 = 0;
     float y1 = 0;
-    float sp1 = 0.001;
 
     bool left = false;
     bool right = false;
@@ -170,14 +184,14 @@ int main(int argc, char* argv[]) {
 
         if (left1 == true){
             x1 -= sp;
-            if (x1 < -1 + 0.2){
-                x1 = -1 + 0.2;
+            if (x1 < -1.15 + 0.2){
+                x1 = -1.15 + 0.2;
             }
         }
         if (right1 == true){
             x1 += sp;
-            if (x1 > 1 - 0.2){
-                x1 = 1 - 0.2;
+            if (x1 > 1.15 - 0.2){
+                x1 = 1.15 - 0.2;
             }
         }
         if (up1 == true){
@@ -188,8 +202,8 @@ int main(int argc, char* argv[]) {
         }
         if (down1 == true){
             y1 -= sp;
-            if (y1 < -1 + 0.2){
-                y1 = -1 + 0.2;
+            if (y1 < -0.645 + 0.2){
+                y1 = -0.645 + 0.2;
             }
         }
         glClear(GL_COLOR_BUFFER_BIT);
