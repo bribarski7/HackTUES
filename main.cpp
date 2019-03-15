@@ -30,8 +30,9 @@ void circle(float x,float y,float r){
 }
 
 int main(int argc, char* argv[]) {
-    SDL_Init(SDL_INIT_VIDEO);SDL_Window *window = SDL_CreateWindow(
-        "SDL2/OpenGL Demo", 30, 30, 480, 480,
+    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Window *window = SDL_CreateWindow(
+        "SDL2/OpenGL Demo", 60, 60, 480, 480,
         SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
         SDL_GL_CreateContext(window);
     glClearColor(0,0,1,1);
