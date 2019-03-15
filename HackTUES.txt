@@ -1,0 +1,45 @@
+History
+	Easy Question
+ 		1.When does the First World War starts?
+        Medium Question
+		2.What is the name of the organisation USA made after first war?
+	Hard Question
+		3.What was the book that Hitler wrote?- "My War"
+BG
+	Easy Question
+		1.
+ 	Medium Question
+		2.When was the "Istoriq Slavqnobulgarska" created? -1762 
+ 	Hard Question
+		3.
+Math
+	Easy Question
+		1.<C = 90*,<A = 30*. If AB = 14cm, how much is BC?
+	Medium Question
+		2. x2 + 4x + 13 = 0. How much is x?
+	Hard Question
+		3. Sinos from alpha if alpha is 150*?
+Geography
+	Easy Question
+		1. Which country is placed east from Bulgaria?
+	Medium Question
+		2. From which town does the word "meridian" comes from?
+	Hard Question
+		3. Which language is spoken in the country Benin? - French
+Sports
+	Easy Question
+		1.What is the color of the home kit of Napoli?
+	Medium Question
+		2.Who has won the first World Cup?
+	Hard Question
+		3.Which player has the most amount of trebles?
+Programming
+	Easy Question
+		1. How to output text in the console?
+	Medium Question
+		2. Which brackets are for array?
+	Hard Question
+		3. How to dereference a pointer?
+ 
+
+	
