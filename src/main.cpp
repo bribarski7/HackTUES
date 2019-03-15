@@ -45,9 +45,6 @@ void rectangle(float x,float y,float w,float h){
     glEnd();
 }
 
-<<<<<<< HEAD
-=======
-
 void load_image(const char *filepath){
     SDL_Surface *image = IMG_Load (filepath);
     GLuint texture_id;
@@ -59,8 +56,6 @@ void load_image(const char *filepath){
     SDL_FreeSurface(image);
 }
 
-
->>>>>>> 565183e67b27e519ce3af09b14e7620617adce30
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
@@ -77,12 +72,12 @@ int main(int argc, char* argv[]) {
     glClearColor(0,0,1,1);
     load_image("res/ASCIIforHACKTUES.png");
 
-    float w=0.1;
-    float h=0.1;
+    float w=0.04;
+    float h=0.04;
 
     float x = 0;
     float y = 0;
-    float r = 0.05;
+    float r = 0.02;
     float sp = 0.0002;
 
     float x1 = 0;
@@ -171,39 +166,39 @@ int main(int argc, char* argv[]) {
         }
         if (up == true){
             y += sp;
-            if (y > 1 - r){
-                y = 1 - r;
+            if (y > 0.981 - r){
+                y = 0.981 - r;
             }
         }
         if (down == true){
             y -= sp;
-            if (y < -1 + r){
-                y = -1 + r;
+            if (y < -0.981 + r){
+                y = -0.981 + r;
             }
         }
 
         if (left1 == true){
             x1 -= sp;
-            if (x1 < -1.15 + 0.2){
-                x1 = -1.15 + 0.2;
+            if (x1 < -1.18 + 0.2){
+                x1 = -1.18 + 0.2;
             }
         }
         if (right1 == true){
             x1 += sp;
-            if (x1 > 1.15 - 0.2){
-                x1 = 1.15 - 0.2;
+            if (x1 > 1.18 - 0.2){
+                x1 = 1.18 - 0.2;
             }
         }
         if (up1 == true){
             y1 += sp;
-            if (y1 > 1 - 0.2){
-                y1 = 1 - 0.2;
+            if (y1 > 0.745 - 0.2){
+                y1 = 0.745 - 0.2;
             }
         }
         if (down1 == true){
             y1 -= sp;
-            if (y1 < -0.645 + 0.2){
-                y1 = -0.645 + 0.2;
+            if (y1 < -0.745 + 0.2){
+                y1 = -0.745  + 0.2;
             }
         }
         glClear(GL_COLOR_BUFFER_BIT);
