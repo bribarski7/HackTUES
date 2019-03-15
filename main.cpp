@@ -40,12 +40,13 @@ void rectangle(float x,float y,float w,float h){
     glEnd();
 }
 
-
+float window_w=1366;
+float window_h=768;
 
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
-        "SDL2/OpenGL Demo", 60, 60, 480, 480,
+        "SDL2/OpenGL Demo", 0, 15, window_w, window_h,
         SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
         SDL_GL_CreateContext(window);
     glClearColor(0,0,1,1);
