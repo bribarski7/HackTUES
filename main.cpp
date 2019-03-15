@@ -3,13 +3,13 @@
 #include <GL/gl.h>
 #include <math.h>
 
-void krasota(float a,float b){
+void krasota(float a,float b,float r){
     glBegin(GL_TRIANGLES);
     for(float i=0;i<=6.28;i+=0.1){
         glBegin(GL_TRIANGLES);
-        glVertex2f(a+cos(i)*0.5,b+sin(i)*0.5);
-        glVertex2f(a+cos(i)*0.5,a+0.01);
-        glVertex2f(b+0.01,b+sin(i)*0.5);
+        glVertex2f(a+cos(i)*r,b+sin(i)*r);
+        glVertex2f(a+cos(i)*r,a+0.01);
+        glVertex2f(b+0.01,b+sin(i)*r);
         glEnd();
     }
 }
@@ -29,6 +29,19 @@ void circle(float x,float y,float r){
     }
 }
 
+void rectangle(float x,float y,float w,float h){
+    w /= 2;
+    h /= 2;
+    glBegin(GL_TRIANGLE_STRIP);
+    glVertex2f(x - w, y - h);
+    glVertex2f(x - w, y + h);
+    glVertex2f(x + w, y - h);
+    glVertex2f(x + w, y + h);
+    glEnd();
+}
+
+
+
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);SDL_Window *window = SDL_CreateWindow(
         "SDL2/OpenGL Demo", 30, 30, 480, 480,
@@ -43,6 +56,8 @@ int main(int argc, char* argv[]) {
     float y=0;
     float a=0.2;
     float b=0.2;
+    float w=0.2;
+    float h=0.3;
     while (1) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
@@ -64,7 +79,8 @@ int main(int argc, char* argv[]) {
         glClear(GL_COLOR_BUFFER_BIT);
 
         float r=0.2;
-        circle(x,y,r);
+        rectangle(x, y, w, h);
+        //circle(x,y,r);
         SDL_GL_SwapWindow(window);
     }
     SDL_Quit();
