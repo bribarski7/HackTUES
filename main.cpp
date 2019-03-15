@@ -1,4 +1,4 @@
-#include <SDL.h>
+ #include <SDL.h>
 #include <stdio.h>
 #include <GL/gl.h>
 
@@ -13,20 +13,30 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     float x=0;
+    float y=0;
     while (1) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-                if(event.type==SDL_QUIT)
+                if(event.type == SDL_QUIT)
                     return 1;
+                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd'){
+                    x+=0.01;
+                }
+                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'a'){
+                    x-=0.01;
+                }
+                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'w'){
+                    y+=0.01;
+                }
+                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 's'){
+                    y-=0.01;
+                }
         }
         glClear(GL_COLOR_BUFFER_BIT);
         glBegin(GL_TRIANGLES);
-        glVertex2f(0,0);
-        glVertex2f(0,0.5);
-        glVertex2f(0.5,0.5);
-        glVertex2f(0.5,0.5);
-        glVertex2f(0.5,0.0);
-        glVertex2f(0.0,0.0);
+        glVertex2f(x+0.3,y-0.2);
+        glVertex2f(x-0.3,y-0.2);
+        glVertex2f(x,y+0.4);
         glEnd();
 
         SDL_GL_SwapWindow(window);
