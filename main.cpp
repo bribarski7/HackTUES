@@ -44,7 +44,7 @@ void rectangle(float x,float y,float w,float h){
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
-        "SDL2/OpenGL Demo", 200, 100, 850, 600,
+        "SDL2/OpenGL Demo", 100, 100, 550, 550,
         SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
         SDL_GL_CreateContext(window);
     glClearColor(0,0,1,1);
@@ -53,14 +53,13 @@ int main(int argc, char* argv[]) {
         printf("Could not create window: %s\n", SDL_GetError());
         return 1;
     }
-    float a=0.2;
-    float b=0.2;
-    float w=0.3;
-    float h=0.2;
+
+    float w=0.15;
+    float h=0.1;
 
     float x = 0;
     float y = 0;
-    float r = 0.15;
+    float r = 0.05;
     float sp = 0.000175;
 
     float x1 = 0;
@@ -163,26 +162,26 @@ int main(int argc, char* argv[]) {
 
         if (left1 == true){
             x1 -= sp;
-            if (x1 < -1 + 0.2){
-                x1 = -1 + 0.2;
+            if (x1 < -1.14 + 0.2){
+                x1 = -1.14 + 0.2;
             }
         }
         if (right1 == true){
             x1 += sp;
-            if (x1 > 1 - 0.2){
-                x1 = 1 - 0.2;
+            if (x1 > 1.14 - 0.2){
+                x1 = 1.14 - 0.2;
             }
         }
         if (up1 == true){
             y1 += sp;
-            if (y1 > 1 - 0.2){
-                y1 = 1 - 0.2;
+            if (y1 > 1.15 - 0.2){
+                y1 = 1.15 - 0.2;
             }
         }
         if (down1 == true){
             y1 -= sp;
-            if (y1 < -1 + 0.2){
-                y1 = -1 + 0.2;
+            if (y1 < -1.15 + 0.2){
+                y1 = -1.15 + 0.2;
             }
         }
         glClear(GL_COLOR_BUFFER_BIT);
