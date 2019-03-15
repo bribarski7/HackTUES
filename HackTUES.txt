@@ -1,0 +1,110 @@
+History
+	Easy Question
+ 		1.When does the First World War starts?
+			a)- 1915
+			b)- 1914
+			c)- 1913
+        Medium Question
+		2.What is the name of the organisation USA made after first war?
+			a)- United Nations
+			b)- Society of Nations
+			c)- Peace
+	Hard Question
+		3.What was the book that Hitler wrote?- "My War"
+			a)- "My War"
+			b)- "German chancellor"
+			c)- He hasn't written a book
+BG
+	Easy Question
+		1.Who created the bulgarian language?
+			a)- Kiril and Metodi
+			b)- Kliment
+			c)- Nobody	
+	Medium Question
+		2.When was the "Istoriq Slavqnobulgarska" created? - 1762 
+			a)- 1762
+			b)- 1763
+			c)- 1764 	
+	Hard Question
+		3.What does satire means?
+			a)- fun
+			b)- anger
+			c)- None of the above
+Math
+	Easy Question
+		1.<C = 90*,<A = 30*. If AB = 14cm, how much is BC?
+			a)- 7cm
+			b)- 28cm
+			c)- 2cm
+	Medium Question
+		2. x2 + 4x + 3 = 0. How much is x?
+			a)- x1 = -1, x2 = -3
+			b)- No roots
+			c)- x = 15
+	Hard Question
+		3. Sinos from alpha if alpha is 150*?
+			a)- 1/2
+			b)- 2
+			c)- 6
+Geography
+	Easy Question
+		1. Which country is placed east from Bulgaria?
+			a)- Black Sea
+			b)- Turkey
+			c)- Romania
+	Medium Question
+		2. From which town does the word "meridian" comes from?
+			a)- Greenwich
+			b)- No where
+			c)- England
+	Hard Question 
+		3. Which language is spoken in the country Benin?
+			a)- French
+			b)- German
+			c)- English
+Sports
+	Easy Question
+		1.What is the color of the home kit of Napoli?
+			a)- Orange
+			b)- Blue
+			c)- Red
+	Medium Question
+		2.Who has won the first World Cup?
+			a)- Urugway
+			b)- Germany
+			c)- Brazil
+	Hard Question
+		3.Which player has the most amount of trebles?
+			a)- Eto'o
+			b)- Messi
+			c)- Both
+Programming
+	Easy Question
+		1. How to output text in the console?
+			a)- Cout
+			b)- Cin
+			c)- Int
+	Medium Question
+		2. Which brackets are for array?
+			a)- {}
+			b)- ()
+			c)- []
+	Hard Question
+		3. With which command you can download git in command prompt?
+			a)- Pacman -S git
+			b)- Download git
+			c)- Install git
+Electrical Engineering
+	Easy Question
+		1. What does this letter stands for - A?
+			a)- Amper
+			b)- Volt
+			c)- Wat
+	Medium Question
+		2. Is the electromagnetic field real or fake?
+			a)- Fake
+			b)- Real
+	Hard Question
+		3. How is it called the electromagnetic field?
+			a)- Vortex field 
+			b)- Electrical field
