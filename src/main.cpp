@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <SDL_image.h>
 #include <stdio.h>
 #include <GL/gl.h>
 #include <math.h>
@@ -45,20 +46,33 @@ void rectangle(float x,float y,float w,float h){
 }
 
 
+void load_image(const char *filepath){
+    SDL_Surface *image = IMG_Load (filepath);
+    GLuint texture_id;
+    glGenTextures(1,&texture_id);
+    glBindTexture(GL_TEXTURE_2D, texture_id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->w, image->h,0,GL_RGBA,GL_UNSIGNED_BYTE,image->pixels);
+    SDL_FreeSurface(image);
+}
 
 
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
         "SDL2/OpenGL Demo", 0, 30, window_w, window_h,
-        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
-        SDL_GL_CreateContext(window);
-    glClearColor(0,0,1,1);
+        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE|SDL_WINDOW_FULLSCREEN);
+
     if (window == NULL)
     {
         printf("Could not create window: %s\n", SDL_GetError());
         return 1;
     }
+    SDL_GL_CreateContext(window);
+
+    glClearColor(0,0,1,1);
+    load_image("res/ASCIIforHACKTUES.png");
 
     float a=0.2;
     float b=0.2;
