@@ -1,22 +1,37 @@
-#include "Help.h"
+struct Question {
+	string question;
+	string answers[3];
+};
+struct QuestionPack {
+	vector<Question> questions;
+	string difficulty;
+
+};
+
+struct Category {
+	vector<QuestionPack> packs;
+	string name;
+};
+
+
 unsigned random(unsigned n) {
 		unsigned index;
 		if (n == 0) n++;
 		index = rand() % n;
 		return index;
 }
-int main()
-{
-   srand(time(NULL));
 
-	fstream inFile;
-	inFile.open("Hack_TUES.txt");
-	if (inFile.fail()) {
+vector<Category> load_questions()
+{
+    srand(time(NULL));
+    fstream inFile;
+    inFile.open("res/Questions.txt");
+    if (inFile.fail()) {
 		cerr << "Error opening file!";
 		exit(1);
 	}
-	vector<Category> categories;
 
+	vector<Category> categories;
 
 	string line;
 
@@ -59,5 +74,5 @@ int main()
 	cout << rquestion.answers[0] << endl;
 	cout << rquestion.answers[1] << endl;
 	cout << rquestion.answers[2] << endl;
-	return 0;
+	return categories;
 }

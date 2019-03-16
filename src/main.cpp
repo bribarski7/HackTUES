@@ -1,13 +1,22 @@
 #include <string>
+#include <vector>
 #include <iostream>
+#include <fstream>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
+#include <time.h>
 #include <GL/gl.h>
 #include <cmath>
+
 #include <assert.h>
 
 using namespace std;
+
+#include "Questions.cpp"
+
+float window_w=720;
+float window_h=480;
 
 
 void krasota(float a,float b,float r){
@@ -20,9 +29,6 @@ void krasota(float a,float b,float r){
         glEnd();
     }
 }
-
-float window_w=720;
-float window_h=480;
 
 void circle(float x,float y,float r){
     int n=32;
