@@ -45,9 +45,6 @@ void rectangle(float x,float y,float w,float h){
     glEnd();
 }
 
-<<<<<<< HEAD
-=======
-
 void load_image(const char *filepath){
     SDL_Surface *image = IMG_Load (filepath);
     GLuint texture_id;
@@ -60,7 +57,6 @@ void load_image(const char *filepath){
 }
 
 
->>>>>>> 565183e67b27e519ce3af09b14e7620617adce30
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
@@ -83,7 +79,7 @@ int main(int argc, char* argv[]) {
     float x = 0;
     float y = 0;
     float r = 0.05;
-    float sp = 0.0002;
+    float sp = 0.0005;
 
     float x1 = 0;
     float y1 = 0;
