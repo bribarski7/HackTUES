@@ -32,7 +32,7 @@ BG
 
   Hard Question
     What does satire mean?
-      a) ridicule	
+      a) ridicule
       b) anger
       c) None of the above
 
@@ -57,10 +57,10 @@ Math
 
 Geography
   Easy Question
-    Which country is placed east from Bulgaria?
-      a) Black Sea
-      b) Turkey
-      c) Romania
+    Which country is placed north from Bulgaria?
+      a) Romania
+      b) Black Sea
+      c) Turkey
 
   Medium Question
     From which town does the word "meridian" comes from?
@@ -83,7 +83,7 @@ Sports
 
   Medium Question
     Who has won the first World Cup?
-      a) Urugway
+      a) Uruguay
       b) Germany
       c) Brazil
 
@@ -102,9 +102,9 @@ Programming
 
   Medium Question
     Which brackets are for array?
-      a) {}
+      a) []
       b) ()
-      c) []
+      c) {}
 
   Hard Question
     With which command you can download git in command prompt?
