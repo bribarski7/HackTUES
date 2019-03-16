@@ -1,8 +1,13 @@
+#include <string>
+#include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
 #include <GL/gl.h>
-#include <math.h>
+#include <cmath>
+#include <assert.h>
+
+using namespace std;
 
 
 void krasota(float a,float b,float r){
@@ -48,6 +53,11 @@ void rectangle(float x,float y,float w,float h){
 
 void load_image(const char *filepath){
     SDL_Surface *image = IMG_Load (filepath);
+    assert(image);
+    //cout<<image->format->format<<endl;
+    //cout<<SDL_PIXELFORMAT_RGBA8888<<endl;
+    //assert(image->format->format==SDL_PIXELFORMAT_RGBA8888);
+
     GLuint texture_id;
     glGenTextures(1,&texture_id);
     glBindTexture(GL_TEXTURE_2D, texture_id);
@@ -58,11 +68,46 @@ void load_image(const char *filepath){
 }
 
 float abs(float a,float b){
-    if(a>b){
+    if(a > b){
         return a-b;
     }
     else{
         return b-a;
+    }
+}
+
+void show_symbol(char c, float x, float y, float h){
+    float tw = 94*6;
+    h /= 2;
+    float w = 5 / 10.0 * h;
+    int n=(c-32)*6;
+    h*=(window_w/window_h);
+    glEnable(GL_TEXTURE_2D);
+    glBegin(GL_TRIANGLE_STRIP);
+    glTexCoord2f(n/tw,1);
+    glVertex2f(x - w, (y - h));
+    glTexCoord2f(n/tw,0);
+    glVertex2f(x - w, (y + h));
+    glTexCoord2f((n+6)/tw,1);
+    glVertex2f(x + w, (y - h));
+    glTexCoord2f((n+6)/tw,0);
+    glVertex2f(x + w, (y + h));
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+}
+
+void show_text(string text, float x, float y, float h){
+    float w = 3.0 / 5 * h;
+    for(size_t i=0;i<text.size();i++){
+        show_symbol(text[i], x+i*w, y, h);
+    }
+}
+
+void show_text_centered(string text, float x, float y, float h){
+    float w = 3.0 / 5 * h;
+    x -= text.size()*w/2;
+    for(size_t i=0;i<text.size();i++){
+        show_symbol(text[i], x+i*w, y, h);
     }
 }
 
@@ -79,6 +124,8 @@ int main(int argc, char* argv[]) {
     }
     SDL_GL_CreateContext(window);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0,0.9,0.3,1);
     load_image("res/ASCIIforHACKTUES.png");
 
@@ -200,33 +247,25 @@ int main(int argc, char* argv[]) {
         }
         if (up1 == true){
             y1 += sp;
-<<<<<<< HEAD
-            if (y1 > 0.745 - 0.2){
-                y1 = 0.745 - 0.2;
-=======
             if (y1 > 1 - w){
                 y1 = 1 - w;
->>>>>>> fc1a094fad33605a0e61f62815319b6358450900
             }
         }
         if (down1 == true){
             y1 -= sp;
-<<<<<<< HEAD
-            if (y1 < -0.745 + 0.2){
-                y1 = -0.745  + 0.2;
-=======
             if (y1 < -1 + w){
                 y1 = -1 + w;
->>>>>>> fc1a094fad33605a0e61f62815319b6358450900
             }
         }
-
         if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
             break;
         }
         glClear(GL_COLOR_BUFFER_BIT);
         rectangle(x1, y1, w, h);
         circle(x,y,r);
+        show_text_centered("center on the playing map!", 0, 0, 0.03);
+        show_text("PL1", x, y,0.03);
+        show_text("PL2",x1,y1,0.03);
         SDL_GL_SwapWindow(window);
     }
     SDL_Quit();
