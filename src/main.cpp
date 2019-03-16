@@ -69,19 +69,18 @@ int main(int argc, char* argv[]) {
     }
     SDL_GL_CreateContext(window);
 
-    glClearColor(0,0,1,1);
+    glClearColor(0,0.9,0.3,1);
     load_image("res/ASCIIforHACKTUES.png");
 
     float w=0.04;
     float h=0.04;
-
-    float x = 0;
-    float y = 0;
+    float x = -0.978;
+    float y = 0.964;
     float r = 0.02;
-    float sp = 0.0002;
+    float sp = 0.0005;
 
-    float x1 = 0;
-    float y1 = 0;
+    float x1 = 0.978;
+    float y1 = -0.541;
 
     bool left = false;
     bool right = false;
