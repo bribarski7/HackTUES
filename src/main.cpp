@@ -131,12 +131,14 @@ int main(int argc, char* argv[]) {
             }
             if (event.type == SDL_KEYUP && event.key.keysym.sym == 'a'){
                 left = false;
-                answer = 1;
             }
-            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'b'){
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == '1'){
                 answer = 2;
             }
-            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'c'){
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == '2'){
+                answer = 2;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == '3'){
                 answer = 3;
             }
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'w'){
