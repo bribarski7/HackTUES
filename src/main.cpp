@@ -250,13 +250,8 @@ int main(int argc, char* argv[]) {
             show_text_centered("P1",  x,  y, 1);
             show_text_centered("P2", x1, y1, 1);
         }
-<<<<<<< HEAD
-=======
-
         show_text_centered(to_string(score_circle),-0.5, 0, 2);
         show_text_centered(to_string(score_square), 0.5, 0, 2);
-
->>>>>>> 0e56b63c414ddccc9544b87dad807eae757f06f0
         SDL_GL_SwapWindow(window);
     }
     SDL_Quit();
