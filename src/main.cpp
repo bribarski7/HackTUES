@@ -52,9 +52,10 @@ int main(int argc, char* argv[]) {
     float y = 0.964;
     float r = 0.02;
     float sp = 0.0005;
-
     float x1 = 0.978;
     float y1 = -0.964;
+    int score_circle = 0;
+    int score_square = 0;
 
     bool left = false;
     bool right = false;
@@ -66,8 +67,11 @@ int main(int argc, char* argv[]) {
     bool up1 = false;
     bool down1 = false;
 
+    int answer = 0;
     bool showq = false;
     Question question;
+    string answers[3];
+
     while (1)
     {
         SDL_Event event;
@@ -81,6 +85,9 @@ int main(int argc, char* argv[]) {
                 window_h = event.window.data2;
                 glViewport(0,0,window_w,window_h);
             }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == '\e'){ // \e == escape
+                return 0;
+            }
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd'){
                 right = true;
             }
@@ -92,6 +99,13 @@ int main(int argc, char* argv[]) {
             }
             if (event.type == SDL_KEYUP && event.key.keysym.sym == 'a'){
                 left = false;
+                answer = 1;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'b'){
+                answer = 2;
+            }
+            if (event.type == SDL_KEYUP && event.key.keysym.sym == 'c'){
+                answer = 3;
             }
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'w'){
                 up = true;
@@ -186,13 +200,47 @@ int main(int argc, char* argv[]) {
 			if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
 				showq = true;
 				question = getRandomQuestion(cats);
+
+                answers[0]=question.answers[0];
+                answers[1]=question.answers[1];
+                answers[2]=question.answers[2];
+                for(int i=0;i<3;i++){
+                    int r = rand()%3;
+                    string swaps = answers[i];
+                    answers[i]=answers[r];
+                    answers[r]=swaps;
+                }
+
+				answer=0;
+				x=-0.978;
+				y=0.964;
+				x1=0.978;
+				y1=-0.964;
 			}
 		}
 
         glClear(GL_COLOR_BUFFER_BIT);
 
         if (showq){
-            show_question(question);
+            show_question(question, answers);
+            if(answer==1){
+                if(answers[0]==question.answers[0]){
+                    score_circle++;
+                }
+                showq=false;
+            }
+            else if(answer==2){
+                if(answers[1]==question.answers[0]){
+                    score_circle++;
+                }
+                showq=false;
+            }
+            else if(answer==3){
+                if(answers[2]==question.answers[0]){
+                    score_circle++;
+                }
+                showq=false;
+            }
         }
         else{
             glColor3f(1,0.1,0.1);
@@ -203,7 +251,8 @@ int main(int argc, char* argv[]) {
             show_text_centered("P2", x1, y1, 1);
         }
 
-
+        show_text_centered(to_string(score_circle),-0.5, 0, 2);
+        show_text_centered(to_string(score_square), 0.5, 0, 2);
 
         SDL_GL_SwapWindow(window);
     }
