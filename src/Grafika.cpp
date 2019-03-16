@@ -102,7 +102,7 @@ void show_text_centered_box (string text, float x, float y, int s) {
 
 void show_question(Question q, string answers[3]){
     show_text_centered_box(q.question, 0, 200, 2);
-    show_text_centered_box("a) " + answers[0], 0, 165, 2);
-    show_text_centered_box("b) " + answers[1], 0, 130, 2);
-    show_text_centered_box("c) " + answers[2], 0, 95, 2);
+    show_text_centered_box("1) " + answers[0], 0, 165, 2);
+    show_text_centered_box("2) " + answers[1], 0, 130, 2);
+    show_text_centered_box("3) " + answers[2], 0, 95, 2);
 }
