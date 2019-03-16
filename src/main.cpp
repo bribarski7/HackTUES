@@ -77,7 +77,7 @@ float abs(float a,float b){
 }
 
 void show_symbol(char c, float x, float y, float h){
-    float tw = 94*6;
+    float tw = 95*6;
     h /= 2;
     float w = 5 / 10.0 * h;
     int n=(c-32)*6;
@@ -263,7 +263,7 @@ int main(int argc, char* argv[]) {
         glClear(GL_COLOR_BUFFER_BIT);
         rectangle(x1, y1, w, h);
         circle(x,y,r);
-        show_text_centered("center on the playing map!", 0, 0, 0.03);
+        show_text_centered("~daskalo~", 0, 0, 0.03);
         show_text("PL1", x, y,0.03);
         show_text("PL2",x1,y1,0.03);
         SDL_GL_SwapWindow(window);
