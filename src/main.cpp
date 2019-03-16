@@ -47,10 +47,9 @@ void set_matrix(){
         0,0,0,1,
     };
     glLoadMatrixf(matrix);
-
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]){
     vector<Category> cats = load_questions();
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
@@ -95,9 +94,8 @@ int main(int argc, char* argv[]) {
     bool down1 = false;
 
     bool p2_goni = true;
-
-    int answer = 0;
     bool showq = false;
+    int answer = 0;
     Question question;
     string answers[3];
 
@@ -121,7 +119,7 @@ int main(int argc, char* argv[]) {
                 glViewport(0,0,window_w,window_h);
                 set_matrix();
             }
-            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == '\e'){ // \e == escape
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == '\e'){
                 return 0;
             }
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd'){
@@ -157,8 +155,6 @@ int main(int argc, char* argv[]) {
             if (event.type == SDL_KEYUP && event.key.keysym.sym == 's'){
                 down = false;
             }
-
-
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'l'){
                 right1 = true;
             }
@@ -186,13 +182,13 @@ int main(int argc, char* argv[]) {
         }
 
         if (!showq){
-            if (left){
+            if (left == true){
                 p1_x -= sp * dt;
                 if (p1_x < -GAME_WIDTH/2 + r){
                     p1_x = -GAME_WIDTH/2 + r;
                 }
             }
-            if (right){
+            if (right == true){
                 p1_x += sp * dt;
                 if (p1_x > GAME_WIDTH/2 - r){
                     p1_x = GAME_WIDTH/2 - r;
@@ -288,7 +284,6 @@ int main(int argc, char* argv[]) {
 
         if (showq){
             show_question(question, answers);
-
             if (answer){
                 if (answers[answer-1] == question.answers[0]){
                     if (p2_goni) {
@@ -328,11 +323,12 @@ int main(int argc, char* argv[]) {
             show_text_centered("P2", p2_x, p2_y, 1);
         }
 
-        show_text_centered(to_string(score_p1), -GAME_WIDTH / 2 - 50, 0, 4);
-        show_text_centered(to_string(score_p2), GAME_WIDTH / 2 + 50, 0, 4);
+        show_text_centered(to_string(score_p1), -GAME_WIDTH / 2 - 50, 0, 5);
+        show_text_centered(to_string(score_p2), GAME_WIDTH / 2 + 50, 0, 5);
 
         SDL_GL_SwapWindow(window);
     }
     SDL_Quit();
     return 0;
 }
+
