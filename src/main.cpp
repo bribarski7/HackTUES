@@ -56,7 +56,6 @@ void load_image(const char *filepath){
     SDL_FreeSurface(image);
 }
 
-
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
@@ -70,19 +69,18 @@ int main(int argc, char* argv[]) {
     }
     SDL_GL_CreateContext(window);
 
-    glClearColor(0,0,1,1);
+    glClearColor(0,0.9,0.3,1);
     load_image("res/ASCIIforHACKTUES.png");
 
-    float w=0.1;
-    float h=0.1;
-
-    float x = 0;
-    float y = 0;
-    float r = 0.05;
+    float w=0.04;
+    float h=0.04;
+    float x = -0.978;
+    float y = 0.964;
+    float r = 0.02;
     float sp = 0.0005;
 
-    float x1 = 0;
-    float y1 = 0;
+    float x1 = 0.978;
+    float y1 = -0.541;
 
     bool left = false;
     bool right = false;
@@ -167,39 +165,39 @@ int main(int argc, char* argv[]) {
         }
         if (up == true){
             y += sp;
-            if (y > 1 - r){
-                y = 1 - r;
+            if (y > 0.981 - r){
+                y = 0.981 - r;
             }
         }
         if (down == true){
             y -= sp;
-            if (y < -1 + r){
-                y = -1 + r;
+            if (y < -0.981 + r){
+                y = -0.981 + r;
             }
         }
 
         if (left1 == true){
             x1 -= sp;
-            if (x1 < -1.15 + 0.2){
-                x1 = -1.15 + 0.2;
+            if (x1 < -1.18 + 0.2){
+                x1 = -1.18 + 0.2;
             }
         }
         if (right1 == true){
             x1 += sp;
-            if (x1 > 1.15 - 0.2){
-                x1 = 1.15 - 0.2;
+            if (x1 > 1.18 - 0.2){
+                x1 = 1.18 - 0.2;
             }
         }
         if (up1 == true){
             y1 += sp;
-            if (y1 > 1 - 0.2){
-                y1 = 1 - 0.2;
+            if (y1 > 0.744 - 0.2){
+                y1 = 0.744 - 0.2;
             }
         }
         if (down1 == true){
             y1 -= sp;
-            if (y1 < -0.645 + 0.2){
-                y1 = -0.645 + 0.2;
+            if (y1 < -0.744 + 0.2){
+                y1 = -0.744  + 0.2;
             }
         }
         glClear(GL_COLOR_BUFFER_BIT);
