@@ -184,14 +184,13 @@ int main(int argc, char* argv[]) {
                     y1 = -1 + w;
                 }
             }
-        }
+			if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
+				showq = true;
+				question = getRandomQuestion(cats);
+			}
+		}
 
         glClear(GL_COLOR_BUFFER_BIT);
-
-        if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
-            showq = true;
-            question = cats[0].packs[0].questions[0];
-        }
 
         if (showq){
             show_question(question);

@@ -16,9 +16,19 @@ struct Category {
 
 unsigned random(unsigned n) {
 		unsigned index;
-		if (n == 0) n++;
+		if (n == 0) return 0;
 		index = rand() % n;
 		return index;
+}
+
+void getNonEmptyLine(istream& is, string& line){
+	while (!is.eof()) {
+		getline(is, line);
+		for(size_t i = 0; i < line.size(); i++){
+			if(line[i] != ' ' && line[i] != '\t')
+			return;
+		}
+	}
 }
 
 vector<Category> load_questions()
@@ -34,11 +44,12 @@ vector<Category> load_questions()
 	vector<Category> categories;
 	string line;
 
-	getline(inFile, line);
+	getNonEmptyLine(inFile, line);
 	while (!inFile.eof()) {
 		Category category;
 		category.name = line;
-		getline(inFile, line);
+		getNonEmptyLine(inFile, line);
+		if(inFile.eof()) break;
 
 		while (!inFile.eof())
 		{
@@ -48,14 +59,15 @@ vector<Category> load_questions()
 			difficulty.difficulty = line;
 
 			while (!inFile.eof()) {
-				getline(inFile, line);
+				getNonEmptyLine(inFile, line);
+				if(inFile.eof()) break;
 				if (line.substr(0, 4) != "    ") break;
 
 				Question question;
 				question.question = line;
-				getline(inFile, question.answers[0]);
-				getline(inFile, question.answers[1]);
-				getline(inFile, question.answers[2]);
+				getNonEmptyLine(inFile, question.answers[0]);
+				getNonEmptyLine(inFile, question.answers[1]);
+				getNonEmptyLine(inFile, question.answers[2]);
 
 				difficulty.questions.push_back(question);
 			}
@@ -65,14 +77,15 @@ vector<Category> load_questions()
 
 		categories.push_back(category);
 	}
-//
-//	Category rcategory = categories[random(categories.size())];
-//	QuestionPack rpack = rcategory.packs[random(rcategory.packs.size())];
-//	Question rquestion = rpack.questions[random(rpack.questions.size())];
-//	cout << rquestion.question << endl;
-//	cout << rquestion.answers[0] << endl;
-//	cout << rquestion.answers[1] << endl;
-//	cout << rquestion.answers[2] << endl;
 
-	return categories;
+	 return categories;
+}
+
+Question getRandomQuestion(vector<Category> categories)
+{
+	Category rcategory = categories[random(categories.size())];
+	QuestionPack rpack = rcategory.packs[random(rcategory.packs.size())];
+	Question rquestion = rpack.questions[random(rpack.questions.size())];
+
+	return rquestion;
 }
