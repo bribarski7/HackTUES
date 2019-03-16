@@ -68,7 +68,6 @@ int main(int argc, char* argv[]) {
 
     bool showq = false;
     Question question;
-
     while (1)
     {
         SDL_Event event;
@@ -196,8 +195,9 @@ int main(int argc, char* argv[]) {
         if (showq){
             show_question(question);
         }
-
+        glColor3f(1,0.01,0.1);
         rectangle(x1, y1, w, h);
+        glColor3f(1,1,1);
         circle(x,y,r);
         show_text_centered("P1",  x,  y, 1);
         show_text_centered("P2", x1, y1, 1);
