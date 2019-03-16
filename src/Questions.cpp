@@ -2,6 +2,7 @@ struct Question {
 	string question;
 	string answers[3];
 };
+
 struct QuestionPack {
 	vector<Question> questions;
 	string difficulty;
@@ -12,7 +13,6 @@ struct Category {
 	vector<QuestionPack> packs;
 	string name;
 };
-
 
 unsigned random(unsigned n) {
 		unsigned index;
@@ -32,7 +32,6 @@ vector<Category> load_questions()
 	}
 
 	vector<Category> categories;
-
 	string line;
 
 	getline(inFile, line);
@@ -66,13 +65,14 @@ vector<Category> load_questions()
 
 		categories.push_back(category);
 	}
+//
+//	Category rcategory = categories[random(categories.size())];
+//	QuestionPack rpack = rcategory.packs[random(rcategory.packs.size())];
+//	Question rquestion = rpack.questions[random(rpack.questions.size())];
+//	cout << rquestion.question << endl;
+//	cout << rquestion.answers[0] << endl;
+//	cout << rquestion.answers[1] << endl;
+//	cout << rquestion.answers[2] << endl;
 
-	Category rcategory = categories[random(categories.size())];
-	QuestionPack rpack = rcategory.packs[random(rcategory.packs.size())];
-	Question rquestion = rpack.questions[random(rpack.questions.size())];
-	cout << rquestion.question << endl;
-	cout << rquestion.answers[0] << endl;
-	cout << rquestion.answers[1] << endl;
-	cout << rquestion.answers[2] << endl;
 	return categories;
 }
