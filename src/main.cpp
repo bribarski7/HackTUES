@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <stdio.h>
 #include <GL/gl.h>
-#include <math.h>
+#include <cmath>
 
 
 void krasota(float a,float b,float r){
@@ -54,6 +54,15 @@ void load_image(const char *filepath){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->w, image->h,0,GL_RGBA,GL_UNSIGNED_BYTE,image->pixels);
     SDL_FreeSurface(image);
+}
+
+float abs(float a,float b){
+    if(a > b){
+        return a-b;
+    }
+    else {
+        return b-a;
+    }
 }
 
 int main(int argc, char* argv[]) {
@@ -200,6 +209,15 @@ int main(int argc, char* argv[]) {
                 y1 = -0.744  + 0.2;
             }
         }
+
+
+        if ((abs(x,x1)<r+w/2 || abs(x1,x)<+r+w/2) && (abs(y,y1)<r+w/2 || abs(y1,y)<+r+w/2)){
+            break;
+
+        }
+
+
+
         glClear(GL_COLOR_BUFFER_BIT);
         rectangle(x1, y1, w, h);
         circle(x,y,r);
