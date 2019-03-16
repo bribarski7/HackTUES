@@ -93,6 +93,6 @@ void show_text_centered(string text, float x, float y, int s){
 }
 
 void show_question(Question q){
-    rectangle(0, 0.2, 0.9, 0.1);
-    show_text_centered(q.question, 0, 0.2, 1);
+    rectangle(0, 0.8, 1.4, 0.1);
+    show_text_centered(q.question, -0.074, 0.8, 2);
 }
