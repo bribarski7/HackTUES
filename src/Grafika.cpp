@@ -1,7 +1,7 @@
 #define SYMBOL_W 6
 #define SYMBOL_H 10
 
-void load_image(const char *filepath){
+GLuint load_image(const char *filepath){
     SDL_Surface *image = IMG_Load (filepath);
     assert(image);
     //cout<<image->format->format<<endl;
@@ -15,6 +15,8 @@ void load_image(const char *filepath){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->w, image->h,0,GL_RGBA,GL_UNSIGNED_BYTE,image->pixels);
     SDL_FreeSurface(image);
+
+    return texture_id;
 }
 
 void krasota(float a,float b,float r){
@@ -74,6 +76,7 @@ void show_symbol(char c, int x, int y, int h, int w){
 }
 
 void show_text(string text, int x, int y, int s){
+    glBindTexture(GL_TEXTURE_2D, font_tex);
     float h = s * 10;
     float w = s * 6;
     for(size_t i=0;i<text.size();i++){
@@ -82,6 +85,7 @@ void show_text(string text, int x, int y, int s){
 }
 
 void show_text_centered(string text, int x, int y, int s){
+    glBindTexture(GL_TEXTURE_2D, font_tex);
     float h = s * 10.0;
     float w = s * 6.0;
     x -= (text.size() - 1) * w / 2;
@@ -105,4 +109,23 @@ void show_question(Question q, string answers[3]){
     show_text_centered_box("1) " + answers[0], 0, 165, 2);
     show_text_centered_box("2) " + answers[1], 0, 130, 2);
     show_text_centered_box("3) " + answers[2], 0, 95, 2);
+}
+
+void draw_image (GLuint texture_id, int x, int y, int w, int h){
+    w /= 2;
+    h /= 2;
+    glBindTexture(GL_TEXTURE_2D, texture_id);
+
+    glEnable(GL_TEXTURE_2D);
+    glBegin(GL_TRIANGLE_STRIP);
+    glTexCoord2f(0,1);
+    glVertex2f(x - w, (y - h));
+    glTexCoord2f(0,0);
+    glVertex2f(x - w, (y + h));
+    glTexCoord2f(1,1);
+    glVertex2f(x + w, (y - h));
+    glTexCoord2f(1,0);
+    glVertex2f(x + w, (y + h));
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
 }

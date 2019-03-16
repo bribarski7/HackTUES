@@ -13,6 +13,8 @@ using namespace std;
 
 float window_w=640;
 float window_h=480;
+GLuint font_tex;
+GLuint logo_tex;
 
 #define P1X -200
 #define P1Y  200
@@ -65,7 +67,9 @@ int main(int argc, char* argv[]) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0,0.9,0.3,1);
-    load_image("res/ASCIIforHACKTUES.png");
+
+    font_tex = load_image("res/ASCIIforHACKTUES.png");
+    logo_tex = load_image("res/Catch_me.png");
 
     set_matrix();
 
@@ -279,6 +283,8 @@ int main(int argc, char* argv[]) {
         circle (0, 0, GAME_HEIGHT / 2 * 0.02);
 
         glColor3f (1,1,1);
+
+        draw_image(logo_tex, 0, 0, 256, 256);
 
         if (showq){
             show_question(question, answers);
