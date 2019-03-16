@@ -276,7 +276,7 @@ int main(int argc, char* argv[]) {
         }
 
         show_text_centered(to_string(score_circle),-GAME_WIDTH/2, 0, 2);
-        show_text_centered(to_string(score_square),GAME_WIDTH/2, 0, 2);
+        show_text_centered(to_string(score_square), GAME_WIDTH/2, 0, 2);
 
         SDL_GL_SwapWindow(window);
     }
