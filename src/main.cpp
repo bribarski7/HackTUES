@@ -37,11 +37,12 @@ void circle(float x,float y,float r){
 void rectangle(float x,float y,float w,float h){
     w /= 2;
     h /= 2;
+    h*=(window_w/window_h);
     glBegin(GL_TRIANGLE_STRIP);
-    glVertex2f(x - w, (y - h)*(window_w/window_h));
-    glVertex2f(x - w, (y + h)*(window_w/window_h));
-    glVertex2f(x + w, (y - h)*(window_w/window_h));
-    glVertex2f(x + w, (y + h)*(window_w/window_h));
+    glVertex2f(x - w, (y - h));
+    glVertex2f(x - w, (y + h));
+    glVertex2f(x + w, (y - h));
+    glVertex2f(x + w, (y + h));
     glEnd();
 }
 
@@ -60,7 +61,7 @@ float abs(float a,float b){
     if(a > b){
         return a-b;
     }
-    else {
+    else{
         return b-a;
     }
 }
@@ -89,7 +90,7 @@ int main(int argc, char* argv[]) {
     float sp = 0.0005;
 
     float x1 = 0.978;
-    float y1 = -0.541;
+    float y1 = -0.964;
 
     bool left = false;
     bool right = false;
@@ -174,50 +175,44 @@ int main(int argc, char* argv[]) {
         }
         if (up == true){
             y += sp;
-            if (y > 0.981 - r){
-                y = 0.981 - r;
+            if (y > 1 - 2*r){
+                y = 1 - 2*r;
             }
         }
         if (down == true){
             y -= sp;
-            if (y < -0.981 + r){
-                y = -0.981 + r;
+            if (y < -1 + 2*r){
+                y = -1 + 2*r;
             }
         }
 
         if (left1 == true){
             x1 -= sp;
-            if (x1 < -1.18 + 0.2){
-                x1 = -1.18 + 0.2;
+            if (x1 < -1 + w/2){
+                x1 = -1 + w/2;
             }
         }
         if (right1 == true){
             x1 += sp;
-            if (x1 > 1.18 - 0.2){
-                x1 = 1.18 - 0.2;
+            if (x1 > 1 - w/2){
+                x1 = 1 - w/2;
             }
         }
         if (up1 == true){
             y1 += sp;
-            if (y1 > 0.744 - 0.2){
-                y1 = 0.744 - 0.2;
+            if (y1 > 1 - w){
+                y1 = 1 - w;
             }
         }
         if (down1 == true){
             y1 -= sp;
-            if (y1 < -0.744 + 0.2){
-                y1 = -0.744  + 0.2;
+            if (y1 < -1 + w){
+                y1 = -1 + w;
             }
         }
-
-
-        if ((abs(x,x1)<r+w/2 || abs(x1,x)<+r+w/2) && (abs(y,y1)<r+w/2 || abs(y1,y)<+r+w/2)){
+        if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
             break;
-
         }
-
-
-
         glClear(GL_COLOR_BUFFER_BIT);
         rectangle(x1, y1, w, h);
         circle(x,y,r);
