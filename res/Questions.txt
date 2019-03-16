@@ -16,7 +16,10 @@ History
       "My War"
       "German chancellor"
       He hasn't written a book
-
+    When did Hitler become a chancellor?
+      1933
+      1934 
+      1935
 BG
   Easy Question
     Who created the Bulgarian alphabet?
@@ -35,7 +38,10 @@ BG
       ridicule
       anger
       None of the above
-
+    Who wrote "Grandpa Gorio"?
+      Balzak
+      Sofroni Vrachanski
+      None of the above
 Math
   Easy Question
     <C = 90*,<A = 30*. If AB = 14cm, how much is BC?
@@ -73,7 +79,10 @@ Geography
       French
       German
       English
-
+    Which capital of Azerbaijan
+      Baku
+      Sofia
+      London
 Sports
   Easy Question
     What is the color of the home kit of Napoli?
@@ -92,7 +101,6 @@ Sports
       Both
       Eto'o
       Messi
-
 Programming
   Easy Question
     How to output text in the console?
