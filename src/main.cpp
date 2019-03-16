@@ -21,8 +21,8 @@ void krasota(float a,float b,float r){
     }
 }
 
-float window_w=1366;
-float window_h=768;
+float window_w=720;
+float window_h=480;
 
 void circle(float x,float y,float r){
     int n=32;
@@ -76,12 +76,11 @@ float abs(float a,float b){
     }
 }
 
-void show_symbol(char c, float x, float y, float h){
+void show_symbol(char c, float x, float y, float h,float w){
     float tw = 95*6;
     h /= 2;
-    float w = 5 / 10.0 * h;
+    w /= 2;
     int n=(c-32)*6;
-    h*=(window_w/window_h);
     glEnable(GL_TEXTURE_2D);
     glBegin(GL_TRIANGLE_STRIP);
     glTexCoord2f(n/tw,1);
@@ -96,18 +95,23 @@ void show_symbol(char c, float x, float y, float h){
     glDisable(GL_TEXTURE_2D);
 }
 
-void show_text(string text, float x, float y, float h){
-    float w = 3.0 / 5 * h;
+void show_text(string text, float x, float y, int s){
+    float h = s * 10;
+    float w = s * 6;
+    h/=window_h/2;
+    w/=window_w/2;
     for(size_t i=0;i<text.size();i++){
-        show_symbol(text[i], x+i*w, y, h);
+        show_symbol(text[i], x+i*w, y, h,w);
     }
 }
-
-void show_text_centered(string text, float x, float y, float h){
-    float w = 3.0 / 5 * h;
-    x -= text.size()*w/2;
+void show_text_centered(string text, float x, float y, int s){
+    float h = s * 10.0;
+    float w = s * 6.0;
+    h/=window_h/2;
+    w/=window_w/2;
+    x -= (text.size() - 1) * w / 2;
     for(size_t i=0;i<text.size();i++){
-        show_symbol(text[i], x+i*w, y, h);
+        show_symbol(text[i], x+i*w, y, h,w);
     }
 }
 
@@ -115,7 +119,7 @@ int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
         "SDL2/OpenGL Demo", 0, 30, window_w, window_h,
-        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE|SDL_WINDOW_FULLSCREEN);
+        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
 
     if (window == NULL)
     {
@@ -263,9 +267,9 @@ int main(int argc, char* argv[]) {
         glClear(GL_COLOR_BUFFER_BIT);
         rectangle(x1, y1, w, h);
         circle(x,y,r);
-        show_text_centered("~daskalo~", 0, 0, 0.03);
-        show_text("PL1", x, y,0.03);
-        show_text("PL2",x1,y1,0.03);
+        show_text_centered("~daskalo~", 0, 0, 3);
+        show_text_centered("p",  x,  y, 1);
+        show_text_centered("PL22888", x1, y1, 1);
         SDL_GL_SwapWindow(window);
     }
     SDL_Quit();
