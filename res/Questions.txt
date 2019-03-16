@@ -1,38 +1,38 @@
 History
   Easy Question
     When does the First World War starts?
-      1915
       1914
+      1915
       1913
 
   Medium Question
-    What is the name of the organisation USA made after first war?
-      United Nations
+    What is the name of the organization USA made after first war?
       Society of Nations
+      United Nations
       Peace
 
   Hard Question
-    What was the book that Hitler wrote?- "My War"
+    What was the book that Hitler wrote?
       "My War"
       "German chancellor"
       He hasn't written a book
 
 BG
   Easy Question
-    Who created the bulgarian language?
+    Who created the Bulgarian alphabet?
       Kiril and Metodi
       Kliment
       Nobody
 
   Medium Question
-    When was the "Istoriq Slavqnobulgarska" created? - 1762
+    When was the "Istoriq Slavqnobulgarska" created?
       1762
       1763
       1764
 
   Hard Question
     What does satire mean?
-      ridicul	e
+      ridicule
       anger
       None of the above
 
@@ -44,23 +44,23 @@ Math
       2cm
 
   Medium Question
-     x2 + 4x + 3 = 0. How much is x?
+    x2 + 4x + 3 = 0. How much is x?
       x1 = -1, x2 = -3
       No roots
       x = 15
 
   Hard Question
-    Sinos from alpha if alpha is 150*?
+    Sine from alpha if alpha is 150*?
       1/2
       2
       6
 
 Geography
   Easy Question
-    Which country is placed east from Bulgaria?
+    Which country is placed north from Bulgaria?
+      Romania
       Black Sea
       Turkey
-      Romania
 
   Medium Question
     From which town does the word "meridian" comes from?
@@ -77,52 +77,52 @@ Geography
 Sports
   Easy Question
     What is the color of the home kit of Napoli?
-      Orange
       Blue
+      Orange
       Red
 
   Medium Question
     Who has won the first World Cup?
-      Urugway
+      Uruguay
       Germany
       Brazil
 
   Hard Question
     Which player has the most amount of trebles?
+      Both
       Eto'o
       Messi
-      Both
 
 Programming
   Easy Question
     How to output text in the console?
-      Cout
-      Cin
-      Int
+      cout
+      cin
+      int
 
   Medium Question
     Which brackets are for array?
+      []
       {}
       ()
-      []
 
   Hard Question
     With which command you can download git in command prompt?
-      Pacman -S git
-      Download git
-      Install git
+      pacman -S git
+      download git
+      install git
 
 Electrical Engineering
   Easy Question
     What does this letter stands for - A?
-      Amper
+      Ampere
       Volt
-      Wat
+      Watt
 
   Medium Question
     Is the electromagnetic field real or fake?
-      Fake
       Real
+      Fake
       None of them
 
   Hard Question
