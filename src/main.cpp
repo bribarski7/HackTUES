@@ -15,8 +15,8 @@ using namespace std;
 
 #include "Questions.cpp"
 
-float window_w=1366;
-float window_h=768;
+float window_w=640;
+float window_h=480;
 
 
 void krasota(float a,float b,float r){
@@ -125,7 +125,7 @@ int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
         "SDL2/OpenGL Demo", 0, 30, window_w, window_h,
-        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE|SDL_WINDOW_FULLSCREEN);
+        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE|SDL_WINDOW_FULLSCREEN_DESKTOP);
 
     if (window == NULL)
     {
