@@ -18,8 +18,8 @@ float window_h=480;
 #define P1Y  200
 #define P2X  200
 #define P2Y -200
-#define GAME_WIDTH  500
-#define GAME_HEIGHT 500
+#define GAME_WIDTH  700
+#define GAME_HEIGHT 700
 
 #include "Questions.cpp"
 #include "Grafika.cpp"
@@ -71,14 +71,14 @@ int main(int argc, char* argv[]) {
 
     float w=40;
     float h=40;
-    float x = P1X;
-    float y = P1Y;
+    float p1_x = P1X;
+    float p1_y = P1Y;
     float r = 20;
     float sp = 500;
-    float x1 = P2X;
-    float y1 = P2Y;
-    int score_circle = 0;
-    int score_square = 0;
+    float p2_x = P2X;
+    float p2_y = P2Y;
+    int score_p1 = 0;
+    int score_p2 = 0;
 
     bool left = false;
     bool right = false;
@@ -183,66 +183,64 @@ int main(int argc, char* argv[]) {
 
         if (!showq){
             if (left){
-                x -= sp * dt;
-                if (x < -GAME_WIDTH/2 + r){
-                    x = -GAME_WIDTH/2 + r;
+                p1_x -= sp * dt;
+                if (p1_x < -GAME_WIDTH/2 + r){
+                    p1_x = -GAME_WIDTH/2 + r;
                 }
             }
             if (right){
-                x += sp * dt;
-                if (x > GAME_WIDTH/2 - r){
-                    x = GAME_WIDTH/2 - r;
+                p1_x += sp * dt;
+                if (p1_x > GAME_WIDTH/2 - r){
+                    p1_x = GAME_WIDTH/2 - r;
                 }
             }
             if (up == true){
-                y += sp * dt;
-                if (y > GAME_HEIGHT/2 - r){
-                    y = GAME_HEIGHT/2 - r;
+                p1_y += sp * dt;
+                if (p1_y > GAME_HEIGHT/2 - r){
+                    p1_y = GAME_HEIGHT/2 - r;
                 }
             }
             if (down == true){
-                y -= sp * dt;
-                if (y < -GAME_HEIGHT/2 + r){
-                    y = -GAME_HEIGHT/2 + r;
+                p1_y -= sp * dt;
+                if (p1_y < -GAME_HEIGHT/2 + r){
+                    p1_y = -GAME_HEIGHT/2 + r;
                 }
             }
 
             if (left1 == true){
-                x1 -= sp * dt;
-                if (x1 < -GAME_WIDTH/2 + w/2){
-                    x1 = -GAME_WIDTH/2 + w/2;
+                p2_x -= sp * dt;
+                if (p2_x < -GAME_WIDTH/2 + w/2){
+                    p2_x = -GAME_WIDTH/2 + w/2;
                 }
             }
             if (right1 == true){
-                x1 += sp * dt;
-                if (x1 > GAME_WIDTH/2 - w/2){
-                    x1 = GAME_WIDTH/2 - w/2;
+                p2_x += sp * dt;
+                if (p2_x > GAME_WIDTH/2 - w/2){
+                    p2_x = GAME_WIDTH/2 - w/2;
                 }
             }
             if (up1 == true){
-                y1 += sp * dt;
-                if (y1 > GAME_HEIGHT/2 - w/2){
-                    y1 = GAME_HEIGHT/2 - w/2;
+                p2_y += sp * dt;
+                if (p2_y > GAME_HEIGHT/2 - w/2){
+                    p2_y = GAME_HEIGHT/2 - w/2;
                 }
             }
             if (down1 == true){
-                y1 -= sp * dt;
-                if (y1 < -GAME_HEIGHT/2 + w/2){
-                    y1 = -GAME_HEIGHT/2 + w/2;
+                p2_y -= sp * dt;
+                if (p2_y < -GAME_HEIGHT/2 + w/2){
+                    p2_y = -GAME_HEIGHT/2 + w/2;
                 }
             }
 
-			if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
+			if(abs(p1_x,p2_x)<r+w/2 && abs(p1_y,p2_y)<r+w/2){
 				showq = true;
 				question = getRandomQuestion(cats);
 
 				if(p2_goni){
-                    score_square++;
-                    p2_goni=false;
+                    score_p2++;
 				}
 				else{
-                    score_circle++;
-                    p2_goni=true;
+                    score_p1++;
 				}
 
                 answers[0]=question.answers[0];
@@ -256,10 +254,10 @@ int main(int argc, char* argv[]) {
                 }
 
 				answer=0;
-				x=P1X;
-				y=P1Y;
-				x1=P2X;
-				y1=P2Y;
+				p1_x=P1X;
+				p1_y=P1Y;
+				p2_x=P2X;
+				p2_y=P2Y;
 			}
 		}
 
@@ -269,45 +267,46 @@ int main(int argc, char* argv[]) {
             show_question(question, answers);
 
             if (answer){
-                if (answers[answer-1]==question.answers[0]){
+                if (answers[answer-1] == question.answers[0]){
                     if (p2_goni) {
-                        score_square++;
+                        score_p1++;
                     }
                     else {
-                        score_circle++;
+                        score_p2++;
                     }
                 }
                 else {
                     if (p2_goni) {
-                        score_circle++;
+                        score_p2++;
                     }
                     else {
-                        score_square++;
+                        score_p1++;
                     }
                 }
 
+                p2_goni = !p2_goni;
                 showq=false;
             }
         }
         else{
             if(p2_goni){
                 glColor3f(1,0.1,0.1);
-                rectangle(x1, y1, w, h);
+                rectangle(p2_x, p2_y, w, h);
                 glColor3f(1,1,1);
-                circle(x,y,r);
+                circle(p1_x,p1_y,r);
             }
             else{
                 glColor3f(1,0.1,0.1);
-                circle(x,y,r);
+                circle(p1_x,p1_y,r);
                 glColor3f(1,1,1);
-                rectangle(x1, y1, w, h);
+                rectangle(p2_x, p2_y, w, h);
             }
-            show_text_centered("P1",  x,  y, 1);
-            show_text_centered("P2", x1, y1, 1);
+            show_text_centered("P1", p1_x, p1_y, 1);
+            show_text_centered("P2", p2_x, p2_y, 1);
         }
 
-        show_text_centered(to_string(score_circle),-GAME_WIDTH/2, 0, 2);
-        show_text_centered(to_string(score_square), GAME_WIDTH/2, 0, 2);
+        show_text_centered(to_string(score_p1), P1X, 0, 2);
+        show_text_centered(to_string(score_p2), P2X, 0, 2);
 
         SDL_GL_SwapWindow(window);
     }
