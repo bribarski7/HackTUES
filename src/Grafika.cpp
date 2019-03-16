@@ -1,3 +1,6 @@
+#define SYMBOL_W 6
+#define SYMBOL_H 10
+
 void load_image(const char *filepath){
     SDL_Surface *image = IMG_Load (filepath);
     assert(image);
@@ -33,22 +36,21 @@ void circle(float x,float y,float r){
         float a=step*i;
         float a2=step*(i+1);
         glBegin(GL_TRIANGLES);
-        glVertex2f(x+cos(a)*r,y+sin(a)*r*(window_w/window_h));
-        glVertex2f(x+cos(a2)*r,y+sin(a2)*r*(window_w/window_h));
+        glVertex2f(x+cos(a)*r,y+sin(a)*r);
+        glVertex2f(x+cos(a2)*r,y+sin(a2)*r);
         glVertex2f(x,y);
         glEnd();
     }
 }
 
-void rectangle(float x,float y,float w,float h){
+void rectangle(float x, float y, float w, float h){
     w /= 2;
     h /= 2;
-    h*=(window_w/window_h);
     glBegin(GL_TRIANGLE_STRIP);
-    glVertex2f(x - w, (y - h));
-    glVertex2f(x - w, (y + h));
-    glVertex2f(x + w, (y - h));
-    glVertex2f(x + w, (y + h));
+    glVertex2f(x - w, y - h);
+    glVertex2f(x - w, y + h);
+    glVertex2f(x + w, y - h);
+    glVertex2f(x + w, y + h);
     glEnd();
 }
 
@@ -74,8 +76,6 @@ void show_symbol(char c, float x, float y, float h,float w){
 void show_text(string text, float x, float y, int s){
     float h = s * 10;
     float w = s * 6;
-    h/=window_h/2;
-    w/=window_w/2;
     for(size_t i=0;i<text.size();i++){
         show_symbol(text[i], x+i*w, y, h,w);
     }
@@ -84,21 +84,25 @@ void show_text(string text, float x, float y, int s){
 void show_text_centered(string text, float x, float y, int s){
     float h = s * 10.0;
     float w = s * 6.0;
-    h/=window_h/2;
-    w/=window_w/2;
     x -= (text.size() - 1) * w / 2;
     for(size_t i=0;i<text.size();i++){
         show_symbol(text[i], x+i*w, y, h,w);
     }
 }
 
+void show_text_centered_box (string text, float x, float y, int s) {
+    int h_padding = 5*2;
+    int v_padding = 4*2;
+    int char_w = SYMBOL_W * s;
+    int w = text.size() * char_w + h_padding;
+    int h = SYMBOL_H * s + v_padding;
+    rectangle(x, y, w, h);
+    show_text_centered(text, x, y-s, s);
+}
+
 void show_question(Question q, string answers[3]){
-    rectangle(0, 0.8, q.question.size(), 0.1);
-    show_text_centered(q.question, 0, 0.8, 2);
-    rectangle(0, 0.6, answers[0].size(), 0.1);
-    show_text("a) " + answers[0], -0.073, 0.6, 2);
-    rectangle(0, 0.4, answers[1].size(), 0.1);
-    show_text("c) " + answers[1], -0.073, 0.4, 2);
-    rectangle(0, 0.2, answers[2].size(), 0.1);
-    show_text("b) " + answers[2], -0.073, 0.2, 2);
+    show_text_centered_box(q.question, 0, 200, 2);
+    show_text_centered_box("a) " + answers[0], 0, 165, 2);
+    show_text_centered_box("b) " + answers[1], 0, 130, 2);
+    show_text_centered_box("c) " + answers[2], 0, 95, 2);
 }

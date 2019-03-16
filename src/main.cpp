@@ -14,6 +14,13 @@ using namespace std;
 float window_w=640;
 float window_h=480;
 
+#define P1X -200
+#define P1Y  200
+#define P2X  200
+#define P2Y -200
+#define GAME_WIDTH  500
+#define GAME_HEIGHT 500
+
 #include "Questions.cpp"
 #include "Grafika.cpp"
 
@@ -25,6 +32,20 @@ float abs(float a,float b){
     else{
         return b-a;
     }
+}
+
+void set_matrix(){
+    float w = 2 / window_w;
+    float h = 2 / window_h;
+
+    float matrix[16]={
+        w,0,0,0,
+        0,h,0,0,
+        0,0,1,0,
+        0,0,0,1,
+    };
+    glLoadMatrixf(matrix);
+
 }
 
 int main(int argc, char* argv[]) {
@@ -46,14 +67,16 @@ int main(int argc, char* argv[]) {
     glClearColor(0,0.9,0.3,1);
     load_image("res/ASCIIforHACKTUES.png");
 
-    float w=0.04;
-    float h=0.04;
-    float x = -0.978;
-    float y = 0.964;
-    float r = 0.02;
-    float sp = 0.0005;
-    float x1 = 0.978;
-    float y1 = -0.964;
+    set_matrix();
+
+    float w=40;
+    float h=40;
+    float x = P1X;
+    float y = P1Y;
+    float r = 20;
+    float sp = 0.1;
+    float x1 = P2X;
+    float y1 = P2Y;
     int score_circle = 0;
     int score_square = 0;
 
@@ -84,6 +107,7 @@ int main(int argc, char* argv[]) {
                 window_w = event.window.data1;
                 window_h = event.window.data2;
                 glViewport(0,0,window_w,window_h);
+                set_matrix();
             }
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == '\e'){ // \e == escape
                 return 0;
@@ -150,51 +174,51 @@ int main(int argc, char* argv[]) {
         if (!showq){
             if (left){
                 x -= sp;
-                if (x < -1 + r){
-                    x = -1 + r;
+                if (x < -GAME_WIDTH/2 + r){
+                    x = -GAME_WIDTH/2 + r;
                 }
             }
             if (right){
                 x += sp;
-                if (x > 1 - r){
-                    x = 1 - r;
+                if (x > GAME_WIDTH/2 - r){
+                    x = GAME_WIDTH/2 - r;
                 }
             }
             if (up == true){
                 y += sp;
-                if (y > 1 - 2*r){
-                    y = 1 - 2*r;
+                if (y > GAME_HEIGHT/2 - r){
+                    y = GAME_HEIGHT/2 - r;
                 }
             }
             if (down == true){
                 y -= sp;
-                if (y < -1 + 2*r){
-                    y = -1 + 2*r;
+                if (y < -GAME_HEIGHT/2 + r){
+                    y = -GAME_HEIGHT/2 + r;
                 }
             }
 
             if (left1 == true){
                 x1 -= sp;
-                if (x1 < -1 + w/2){
-                    x1 = -1 + w/2;
+                if (x1 < -GAME_WIDTH/2 + w/2){
+                    x1 = -GAME_WIDTH/2 + w/2;
                 }
             }
             if (right1 == true){
                 x1 += sp;
-                if (x1 > 1 - w/2){
-                    x1 = 1 - w/2;
+                if (x1 > GAME_WIDTH/2 - w/2){
+                    x1 = GAME_WIDTH/2 - w/2;
                 }
             }
             if (up1 == true){
                 y1 += sp;
-                if (y1 > 1 - w){
-                    y1 = 1 - w;
+                if (y1 > GAME_HEIGHT/2 - w/2){
+                    y1 = GAME_HEIGHT/2 - w/2;
                 }
             }
             if (down1 == true){
                 y1 -= sp;
-                if (y1 < -1 + w){
-                    y1 = -1 + w;
+                if (y1 < -GAME_HEIGHT/2 + w/2){
+                    y1 = -GAME_HEIGHT/2 + w/2;
                 }
             }
 			if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
@@ -212,10 +236,10 @@ int main(int argc, char* argv[]) {
                 }
 
 				answer=0;
-				x=-0.978;
-				y=0.964;
-				x1=0.978;
-				y1=-0.964;
+				x=P1X;
+				y=P1Y;
+				x1=P2X;
+				y1=P2Y;
 			}
 		}
 
@@ -251,8 +275,8 @@ int main(int argc, char* argv[]) {
             show_text_centered("P2", x1, y1, 1);
         }
 
-        show_text_centered(to_string(score_circle),-0.5, 0, 2);
-        show_text_centered(to_string(score_square), 0.5, 0, 2);
+        show_text_centered(to_string(score_circle),-GAME_WIDTH/2, 0, 2);
+        show_text_centered(to_string(score_square),GAME_WIDTH/2, 0, 2);
 
         SDL_GL_SwapWindow(window);
     }
