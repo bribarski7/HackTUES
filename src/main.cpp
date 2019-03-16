@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
     float x = P1X;
     float y = P1Y;
     float r = 20;
-    float sp = 0.1;
+    float sp = 500;
     float x1 = P2X;
     float y1 = P2Y;
     int score_circle = 0;
@@ -95,8 +95,14 @@ int main(int argc, char* argv[]) {
     Question question;
     string answers[3];
 
+    Uint32 last_time = SDL_GetTicks ();
+
     while (1)
     {
+        Uint32 current_time = SDL_GetTicks ();
+        double dt = (current_time - last_time) / 1000.0;
+        last_time = current_time;
+
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
@@ -173,57 +179,59 @@ int main(int argc, char* argv[]) {
 
         if (!showq){
             if (left){
-                x -= sp;
+                x -= sp * dt;
                 if (x < -GAME_WIDTH/2 + r){
                     x = -GAME_WIDTH/2 + r;
                 }
             }
             if (right){
-                x += sp;
+                x += sp * dt;
                 if (x > GAME_WIDTH/2 - r){
                     x = GAME_WIDTH/2 - r;
                 }
             }
             if (up == true){
-                y += sp;
+                y += sp * dt;
                 if (y > GAME_HEIGHT/2 - r){
                     y = GAME_HEIGHT/2 - r;
                 }
             }
             if (down == true){
-                y -= sp;
+                y -= sp * dt;
                 if (y < -GAME_HEIGHT/2 + r){
                     y = -GAME_HEIGHT/2 + r;
                 }
             }
 
             if (left1 == true){
-                x1 -= sp;
+                x1 -= sp * dt;
                 if (x1 < -GAME_WIDTH/2 + w/2){
                     x1 = -GAME_WIDTH/2 + w/2;
                 }
             }
             if (right1 == true){
-                x1 += sp;
+                x1 += sp * dt;
                 if (x1 > GAME_WIDTH/2 - w/2){
                     x1 = GAME_WIDTH/2 - w/2;
                 }
             }
             if (up1 == true){
-                y1 += sp;
+                y1 += sp * dt;
                 if (y1 > GAME_HEIGHT/2 - w/2){
                     y1 = GAME_HEIGHT/2 - w/2;
                 }
             }
             if (down1 == true){
-                y1 -= sp;
+                y1 -= sp * dt;
                 if (y1 < -GAME_HEIGHT/2 + w/2){
                     y1 = -GAME_HEIGHT/2 + w/2;
                 }
             }
+
 			if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
 				showq = true;
 				question = getRandomQuestion(cats);
+				score_square++;
 
                 answers[0]=question.answers[0];
                 answers[1]=question.answers[1];
@@ -251,17 +259,26 @@ int main(int argc, char* argv[]) {
                 if(answers[0]==question.answers[0]){
                     score_circle++;
                 }
+                else{
+                    score_square++;
+                }
                 showq=false;
             }
             else if(answer==2){
                 if(answers[1]==question.answers[0]){
                     score_circle++;
                 }
+                else{
+                    score_square++;
+                }
                 showq=false;
             }
             else if(answer==3){
                 if(answers[2]==question.answers[0]){
                     score_circle++;
+                }
+                else{
+                    score_square++;
                 }
                 showq=false;
             }
