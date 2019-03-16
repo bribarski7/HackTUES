@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow(
         "Catch me", 0, 30, window_w, window_h,
-        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
+        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE|SDL_WINDOW_FULLSCREEN_DESKTOP);
 
     if (window == NULL)
     {
@@ -194,12 +194,17 @@ int main(int argc, char* argv[]) {
         if (showq){
             show_question(question);
         }
-        glColor3f(1,0.01,0.1);
-        rectangle(x1, y1, w, h);
-        glColor3f(1,1,1);
-        circle(x,y,r);
-        show_text_centered("P1",  x,  y, 1);
-        show_text_centered("P2", x1, y1, 1);
+        else{
+            glColor3f(1,0.1,0.1);
+            rectangle(x1, y1, w, h);
+            glColor3f(1,1,1);
+            circle(x,y,r);
+            show_text_centered("P1",  x,  y, 1);
+            show_text_centered("P2", x1, y1, 1);
+        }
+
+
+
         SDL_GL_SwapWindow(window);
     }
     SDL_Quit();

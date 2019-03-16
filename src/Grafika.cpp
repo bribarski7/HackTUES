@@ -93,15 +93,12 @@ void show_text_centered(string text, float x, float y, int s){
 }
 
 void show_question(Question q){
-    rectangle(0, 0.8, 1.4, 0.1);
-    show_text_centered(q.question, -0.073, 0.8, 2);
+    rectangle(0, 0.8, q.question.size(), 0.1);
+    show_text_centered(q.question, 0, 0.8, 2);
     rectangle(0, 0.6, 1.4, 0.1);
-    show_text("a", -0.073, 0.6, 2);
+    show_text(q.answers[0], -0.073, 0.6, 2);
     rectangle(0, 0.4, 1.4, 0.1);
-    show_text("b", -0.073, 0.4, 2);
+    show_text(q.answers[1], -0.073, 0.4, 2);
     rectangle(0, 0.2, 1.4, 0.1);
-    show_text("c", -0.073, 0.2, 2);
-
-
-
+    show_text(q.answers[2], -0.073, 0.2, 2);
 }

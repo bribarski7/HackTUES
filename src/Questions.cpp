@@ -56,7 +56,7 @@ vector<Category> load_questions()
 			if (line.substr(0, 2) != "  ") break;
 
 			QuestionPack difficulty;
-			difficulty.difficulty = line;
+			difficulty.difficulty = line.substr(2);
 
 			while (!inFile.eof()) {
 				getNonEmptyLine(inFile, line);
@@ -64,10 +64,14 @@ vector<Category> load_questions()
 				if (line.substr(0, 4) != "    ") break;
 
 				Question question;
-				question.question = line;
+				question.question = line.substr(4);
 				getNonEmptyLine(inFile, question.answers[0]);
 				getNonEmptyLine(inFile, question.answers[1]);
 				getNonEmptyLine(inFile, question.answers[2]);
+
+				question.answers[0] = question.answers[0].substr(6);
+				question.answers[1] = question.answers[1].substr(6);
+				question.answers[2] = question.answers[2].substr(6);
 
 				difficulty.questions.push_back(question);
 			}
