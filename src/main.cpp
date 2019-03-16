@@ -90,6 +90,8 @@ int main(int argc, char* argv[]) {
     bool up1 = false;
     bool down1 = false;
 
+    bool p2_goni = true;
+
     int answer = 0;
     bool showq = false;
     Question question;
@@ -231,7 +233,15 @@ int main(int argc, char* argv[]) {
 			if(abs(x,x1)<r+w/2 && abs(y,y1)<r+w/2){
 				showq = true;
 				question = getRandomQuestion(cats);
-				score_square++;
+
+				if(p2_goni){
+                    score_square++;
+                    p2_goni=false;
+				}
+				else{
+                    score_circle++;
+                    p2_goni=true;
+				}
 
                 answers[0]=question.answers[0];
                 answers[1]=question.answers[1];
@@ -255,39 +265,41 @@ int main(int argc, char* argv[]) {
 
         if (showq){
             show_question(question, answers);
-            if(answer==1){
-                if(answers[0]==question.answers[0]){
-                    score_circle++;
+
+            if (answer){
+                if (answers[answer-1]==question.answers[0]){
+                    if (p2_goni) {
+                        score_square++;
+                    }
+                    else {
+                        score_circle++;
+                    }
                 }
-                else{
-                    score_square++;
+                else {
+                    if (p2_goni) {
+                        score_circle++;
+                    }
+                    else {
+                        score_square++;
+                    }
                 }
-                showq=false;
-            }
-            else if(answer==2){
-                if(answers[1]==question.answers[0]){
-                    score_circle++;
-                }
-                else{
-                    score_square++;
-                }
-                showq=false;
-            }
-            else if(answer==3){
-                if(answers[2]==question.answers[0]){
-                    score_circle++;
-                }
-                else{
-                    score_square++;
-                }
+
                 showq=false;
             }
         }
         else{
-            glColor3f(1,0.1,0.1);
-            rectangle(x1, y1, w, h);
-            glColor3f(1,1,1);
-            circle(x,y,r);
+            if(p2_goni){
+                glColor3f(1,0.1,0.1);
+                rectangle(x1, y1, w, h);
+                glColor3f(1,1,1);
+                circle(x,y,r);
+            }
+            else{
+                glColor3f(1,0.1,0.1);
+                circle(x,y,r);
+                glColor3f(1,1,1);
+                rectangle(x1, y1, w, h);
+            }
             show_text_centered("P1",  x,  y, 1);
             show_text_centered("P2", x1, y1, 1);
         }
