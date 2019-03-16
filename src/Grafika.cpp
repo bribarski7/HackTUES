@@ -54,7 +54,7 @@ void rectangle(float x, float y, float w, float h){
     glEnd();
 }
 
-void show_symbol(char c, float x, float y, float h,float w){
+void show_symbol(char c, int x, int y, int h, int w){
     float tw = 95*6;
     h /= 2;
     w /= 2;
@@ -73,7 +73,7 @@ void show_symbol(char c, float x, float y, float h,float w){
     glDisable(GL_TEXTURE_2D);
 }
 
-void show_text(string text, float x, float y, int s){
+void show_text(string text, int x, int y, int s){
     float h = s * 10;
     float w = s * 6;
     for(size_t i=0;i<text.size();i++){
@@ -81,7 +81,7 @@ void show_text(string text, float x, float y, int s){
     }
 }
 
-void show_text_centered(string text, float x, float y, int s){
+void show_text_centered(string text, int x, int y, int s){
     float h = s * 10.0;
     float w = s * 6.0;
     x -= (text.size() - 1) * w / 2;
@@ -90,7 +90,7 @@ void show_text_centered(string text, float x, float y, int s){
     }
 }
 
-void show_text_centered_box (string text, float x, float y, int s) {
+void show_text_centered_box (string text, int x, int y, int s) {
     int h_padding = 5*2;
     int v_padding = 4*2;
     int char_w = SYMBOL_W * s;
