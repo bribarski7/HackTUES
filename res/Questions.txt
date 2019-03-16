@@ -16,7 +16,10 @@ History
       "My War"
       "German chancellor"
       He hasn't written a book
-
+    When did Hitler become a chancellor?
+      1933
+      1934 
+      1935
 BG
   Easy Question
     Who created the Bulgarian alphabet?
@@ -35,7 +38,6 @@ BG
       ridicule
       anger
       None of the above
-
 Math
   Easy Question
     <C = 90*,<A = 30*. If AB = 14cm, how much is BC?
