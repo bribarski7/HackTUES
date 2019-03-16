@@ -15,8 +15,8 @@ using namespace std;
 
 #include "Questions.cpp"
 
-float window_w=720;
-float window_h=480;
+float window_w=1366;
+float window_h=768;
 
 
 void krasota(float a,float b,float r){
@@ -166,6 +166,12 @@ int main(int argc, char* argv[]) {
         {
             if(event.type == SDL_QUIT)
                 return 1;
+
+            if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED){
+                window_w = event.window.data1;
+                window_h = event.window.data2;
+                glViewport(0,0,window_w,window_h);
+            }
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd'){
                 right = true;
             }
@@ -273,7 +279,6 @@ int main(int argc, char* argv[]) {
         glClear(GL_COLOR_BUFFER_BIT);
         rectangle(x1, y1, w, h);
         circle(x,y,r);
-        show_text_centered("~daskalo~", 0, 0, 3);
         show_text_centered("p",  x,  y, 1);
         show_text_centered("PL22888", x1, y1, 1);
         SDL_GL_SwapWindow(window);
