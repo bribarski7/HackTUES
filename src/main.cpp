@@ -202,9 +202,6 @@ int main(int argc, char* argv[]) {
             show_text_centered("P1",  x,  y, 1);
             show_text_centered("P2", x1, y1, 1);
         }
-
-
-
         SDL_GL_SwapWindow(window);
     }
     SDL_Quit();
