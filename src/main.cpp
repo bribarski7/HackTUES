@@ -133,7 +133,7 @@ int main(int argc, char* argv[]) {
                 left = false;
             }
             if (event.type == SDL_KEYUP && event.key.keysym.sym == '1'){
-                answer = 2;
+                answer = 1;
             }
             if (event.type == SDL_KEYUP && event.key.keysym.sym == '2'){
                 answer = 2;
@@ -263,6 +263,23 @@ int main(int argc, char* argv[]) {
 
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glColor3f (0.2, 0.7, 0.2);
+        rectangle(0,0,GAME_WIDTH,GAME_HEIGHT);
+
+        glColor3f (0.9, 1.0, 0.9);
+        rectangle (0, 0, 10, GAME_HEIGHT);
+
+        glColor3f (0.9, 1.0, 0.9);
+        circle (0, 0, GAME_HEIGHT / 2 * 0.2);
+
+        glColor3f (0.2, 0.7, 0.2);
+        circle (0, 0, GAME_HEIGHT / 2 * 0.17);
+
+        glColor3f (0.9, 1.0, 0.9);
+        circle (0, 0, GAME_HEIGHT / 2 * 0.02);
+
+        glColor3f (1,1,1);
+
         if (showq){
             show_question(question, answers);
 
@@ -292,21 +309,21 @@ int main(int argc, char* argv[]) {
             if(p2_goni){
                 glColor3f(1,0.1,0.1);
                 rectangle(p2_x, p2_y, w, h);
-                glColor3f(1,1,1);
+                glColor3f(0.2,0.2,1);
                 circle(p1_x,p1_y,r);
             }
             else{
                 glColor3f(1,0.1,0.1);
                 circle(p1_x,p1_y,r);
-                glColor3f(1,1,1);
+                glColor3f(0.2,0.2,1);
                 rectangle(p2_x, p2_y, w, h);
             }
             show_text_centered("P1", p1_x, p1_y, 1);
             show_text_centered("P2", p2_x, p2_y, 1);
         }
 
-        show_text_centered(to_string(score_p1), P1X, 0, 2);
-        show_text_centered(to_string(score_p2), P2X, 0, 2);
+        show_text_centered(to_string(score_p1), -GAME_WIDTH / 2 - 50, 0, 4);
+        show_text_centered(to_string(score_p2), GAME_WIDTH / 2 + 50, 0, 4);
 
         SDL_GL_SwapWindow(window);
     }
