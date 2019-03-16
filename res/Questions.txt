@@ -38,6 +38,10 @@ BG
       ridicule
       anger
       None of the above
+    Who wrote "Grandpa Gorio"?
+      Balzak
+      Sofroni Vrachanski
+      None of the above
 Math
   Easy Question
     <C = 90*,<A = 30*. If AB = 14cm, how much is BC?
@@ -75,7 +79,10 @@ Geography
       French
       German
       English
-
+    Which capital of Azerbaijan
+      Baku
+      Sofia
+      London
 Sports
   Easy Question
     What is the color of the home kit of Napoli?
@@ -94,7 +101,6 @@ Sports
       Both
       Eto'o
       Messi
-
 Programming
   Easy Question
     How to output text in the console?
