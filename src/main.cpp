@@ -49,6 +49,29 @@ void set_matrix(){
     glLoadMatrixf(matrix);
 }
 
+int reset (int p, int l){
+    if (p >= 5 || l >= 5){
+        if (p >= 5){
+            show_text_centered_box("PLayer 1 Win", 0, 300, 4);
+            show_text_centered_box("Play again?", 0, 250, 4);
+            show_text_centered_box("Yes-(y)", 0, 200, 2);
+            show_text_centered_box("No-(n)", 0, 175, 2);
+            return 1;
+
+        }
+        if (l >= 5){
+            show_text_centered_box("PLayer 2 Win", 0, 300, 4);
+            show_text_centered_box("Play again?", 0, 250, 4);
+            show_text_centered_box("Yes-(y)", 0, 200, 2);
+            show_text_centered_box("No-(n)", 0, 175, 2);
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+}
+
 int main(int argc, char* argv[]){
     vector<Category> cats = load_questions();
     SDL_Init(SDL_INIT_VIDEO);
@@ -95,6 +118,7 @@ int main(int argc, char* argv[]){
 
     bool p2_goni = true;
     bool showq = false;
+    bool resetq = false;
     int answer = 0;
     Question question;
     string answers[3];
@@ -120,6 +144,15 @@ int main(int argc, char* argv[]){
                 set_matrix();
             }
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == '\e'){
+                return 0;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'y'){
+                score_p1=0;
+                score_p2=0;
+                showq=false;
+                resetq=false;
+            }
+            if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'n'){
                 return 0;
             }
             if (event.type == SDL_KEYDOWN && event.key.keysym.sym == 'd'){
@@ -181,7 +214,7 @@ int main(int argc, char* argv[]){
             }
         }
 
-        if (!showq){
+        if (!showq && !resetq){
             if (left == true){
                 p1_x -= sp * dt;
                 if (p1_x < -GAME_WIDTH/2 + r){
@@ -307,6 +340,10 @@ int main(int argc, char* argv[]){
             }
         }
         else{
+            if(score_p1 >=5 || score_p2>=5){
+                resetq=true;
+                reset(score_p1, score_p2);
+            }
             if(p2_goni){
                 glColor3f(1,0.1,0.1);
                 rectangle(p2_x, p2_y, w, h);
