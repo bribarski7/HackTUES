@@ -9,6 +9,7 @@
 #include <GL/gl.h>
 #include <cmath>
 #include <assert.h>
+
 using namespace std;
 
 float window_w=640;
@@ -36,19 +37,7 @@ float abs(float a,float b){
     }
 }
 
-void set_matrix(){
-    float w = 2 / window_w;
-    float h = 2 / window_h;
 
-    float matrix[16]={
-        w,0,0,0,
-        0,h,0,0,
-        0,0,1,0,
-        0,0,0,1,
-    };
-    glLoadMatrixf(matrix);
-
-}
 
 int main(int argc, char* argv[]) {
     vector<Category> cats = load_questions();
