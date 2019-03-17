@@ -9,6 +9,7 @@
 #include <GL/gl.h>
 #include <cmath>
 #include <assert.h>
+
 using namespace std;
 
 float window_w=640;
